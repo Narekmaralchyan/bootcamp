@@ -1,0 +1,16 @@
+/*
+Your function must accept 2 arrays, then return the common words from each.
+*    arr1 ["dog", "cat", "parrot"] arr2 ["lizard", "rat", "cat"] -> ["cat"]
+*/
+
+function commonWords (arr1 , arr2){
+    let newArray = []
+    for( let i = 0 ; i < arr1.length ; i++)
+    {
+        let temp = arr1[i];
+        for(let j = 0 ; j < arr2.length ; j++){
+            if(arr2[j]==temp) newArray.push(temp)
+        }
+    }
+    return newArray;
+}

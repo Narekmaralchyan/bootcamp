@@ -1,5 +1,8 @@
-//Write a function to return only unique values of the given array. 
-
+/*
+In this JavaScript array exercise, the supplied array may contain duplicate values. Write a function
+*    to return only unique values — values that only occur exactly one time within the provided array.
+*    [1, 1, 2, 3, 3, 4, 4, 5] -> [2, 5];
+*/
 function arrayFromUniques (array){
     let newArray = [];
 
@@ -14,3 +17,4 @@ function arrayFromUniques (array){
     }
     return newArray;
 }
+

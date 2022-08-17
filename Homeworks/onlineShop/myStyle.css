@@ -1,3 +1,10 @@
+
+body{
+    background-color: aqua;
+}
+.root{
+    position: relative;
+}
 .items{
     display: flex;
     flex-wrap: wrap;
@@ -8,10 +15,15 @@
     display: flex;
     flex-direction: column;
     width: 200px;
-    height: 350px;
+    height: 360px;
     border: 2px solid black;
     margin: 5px;
 
+}
+.itemCard>button{
+    height: 60px;
+    background-color: brown;
+    color: white;
 }
 
 .itemImage{
@@ -21,6 +33,7 @@
 }
 .itemName{
     border: 1px solid black;
+    height:100px ;
 }
 
 .itemPrice{
@@ -35,7 +48,37 @@
     content: "$";
 }
 
-.addButton{
-
+.hidden{
+    display: none
+}
+.root>.hidden{
+    display: none;
 }
 
+.cartElement{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 50%;
+    border: 1px solid black;
+    background: rgba(0, 0, 255, 0.897)
+}
+.itemInCart>button{
+    background-color:red;
+    width: 100%;
+    height: 100%;
+}
+.itemInCart{
+    background-color: grey;
+     display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 350px;
+    border: 2px solid black;
+    margin: 5px;
+}
+ .cartPriceText{
+    display: flex;
+    width: 100%;
+ }

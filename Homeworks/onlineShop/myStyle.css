@@ -1,6 +1,11 @@
-
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body{
-    background-color: aqua;
+    background-image: url("sources/HD\ wallpaper_\ anarchy\,\ computer\,\ dark\,\ hacker\,\ sadic.jpg");
+    background-size: cover;
 }
 .root{
     position: relative;
@@ -8,50 +13,63 @@ body{
 .items{
     display: flex;
     flex-wrap: wrap;
+    margin: 20px;
+    gap: 10px;
 
 }
 
 .itemCard{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 200px;
     height: 360px;
     border: 2px solid black;
-    margin: 5px;
+    background-color: aqua;
+    
 
 }
-.itemCard>button{
-    height: 60px;
+.cont{
+    width: 100%;
+    display: flex;
+}
+.addButton{
+    height: 50px;
+    width: 50%;
     background-color: brown;
     color: white;
+    border: none;
 }
-
-.itemImage{
-
-    width: 200px;
-    height: 200px;
-}
-.itemName{
-    border: 1px solid black;
-    height:100px ;
-}
-
 .itemPrice{
     background-color: rgb(231, 211, 211);
     padding: 3px;
-    border: 1px solid black;
-    font-size: 20px;
+    font-size: 30px;
     font-style: italic;
+    height: 50px;
+    width: 50%;
 }
+.itemImage{
+
+    width: 100%;
+    height: 200px;
+}
+.itemName{
+    width: 100%;
+    
+
+}
+.currentPrice{
+    background-color: rgb(0, 253, 25);
+    width: 100%;
+}
+
 
 .itemPrice:before{
     content: "$";
 }
 
-.hidden{
-    display: none
-}
-.root>.hidden{
+
+.hidden ,.root>.hidden{
     display: none;
 }
 
@@ -64,14 +82,17 @@ body{
     border: 1px solid black;
     background: rgba(0, 0, 255, 0.897)
 }
-.itemInCart>button{
-    background-color:red;
-    width: 100%;
-    height: 100%;
+.removeElem{
+    height: 50px;
+    width: 50%;
+    background-color: brown;
+    color: white;
+    border: none;;
 }
 .itemInCart{
     background-color: grey;
-     display: flex;
+    display: flex;
+    justify-content: space-between;
     flex-direction: column;
     width: 200px;
     height: 350px;
@@ -82,3 +103,36 @@ body{
     display: flex;
     width: 100%;
  }
+ .cont>button:hover{
+    color: black;
+    background-color: yellow;
+ }
+
+.removeElem:hover{
+    color: black;
+    background-color: yellow;
+ }
+ header{padding: 30px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+   
+ }
+ .search{
+    width: 600px;
+    height: 40px;
+ }
+.showCart{
+    width: 40px;
+    height: 40px;
+}
+.showItems , .showCart  , .addButton , .removeElem{
+    cursor: pointer;
+}
+.showItems{
+    font-size: large;
+}
+ 
+.loading{
+    color: wheat;
+padding-left: 45%;}

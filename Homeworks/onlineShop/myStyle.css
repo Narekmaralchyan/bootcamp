@@ -36,22 +36,34 @@ body{
 .addButton{
     height: 50px;
     width: 50%;
-    background-color: brown;
+    background-color: red;
     color: white;
     border: none;
+    border-radius: 20px 0 20px 0;
+    border: 1px solid white;
 }
+
 .itemPrice{
-    background-color: rgb(231, 211, 211);
+    background-color: red;
+    color: white;
     padding: 3px;
     font-size: 30px;
     font-style: italic;
     height: 50px;
     width: 50%;
+    border-radius: 0 20px 0 20px;
+}
+.itemPrice:hover{
+    transform: scale(1.05);
 }
 .itemImage{
 
     width: 100%;
     height: 200px;
+}
+.itemImage:hover{
+    transform: scale(1.4);
+    border-radius: 10%;
 }
 .itemName{
     width: 100%;
@@ -85,9 +97,12 @@ body{
 .removeElem{
     height: 50px;
     width: 50%;
-    background-color: brown;
+    background-color: red;
     color: white;
-    border: none;;
+    border: none;
+    border-radius: 20px 0 20px 0;
+    border: 1px solid white;
+    border: 1px solid grey;
 }
 .itemInCart{
     background-color: grey;
@@ -103,9 +118,10 @@ body{
     display: flex;
     width: 100%;
  }
- .cont>button:hover{
-    color: black;
-    background-color: yellow;
+ .cont>button:active{
+    background-color: #000000;
+    box-shadow: 0 5px rgb(4, 123, 235);
+    transform: translateY(4px);
  }
 
 .removeElem:hover{

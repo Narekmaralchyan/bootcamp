@@ -1,4 +1,5 @@
 import { data } from "./sources/sources.js"   //Data loaded from www.ebay.com
+let loaded = false;
 const root = document.querySelector(".root")
 const showButton = document.querySelector(".showItems")
 const container = document.querySelector(".items")
@@ -71,7 +72,9 @@ function createItemCard({name,price,src}){   // createItemCard() is createing <d
     return card;
 }
 function render(){           // render() render all item cards in document
-    let loading = document.createElement("h2")
+    if(!loaded)
+    {
+        let loading = document.createElement("h2")
     loading.classList.add("loading")
     loading.innerText = "LOADING..."
     container.append(loading)  
@@ -83,6 +86,8 @@ function render(){           // render() render all item cards in document
                 container.append(createItemCard(item,))
             })
         })
+    }
+    loaded =true;
 }
 function search (event){
     let names = document.querySelectorAll(".itemName");

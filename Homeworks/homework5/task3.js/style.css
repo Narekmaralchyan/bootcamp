@@ -1,0 +1,9 @@
+.info{
+    border: 1px solid black;
+    margin: 2px;
+    background-color: aqua;
+    width: 30%;
+}
+.name{
+    background-color:yellow;
+}

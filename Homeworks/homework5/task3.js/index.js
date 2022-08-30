@@ -73,7 +73,7 @@ function render (){
                 }
             }
             else{
-                for(let i = 0 ; i < settings.Max_items_to_show ; i++){
+                for(let i = 0 ; i < settings.Max_items_to_show && i<data.length ; i++){
                     
                         let info = document.createElement("div")
                         info.classList.add("info")

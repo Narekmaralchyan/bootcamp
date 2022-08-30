@@ -25,7 +25,7 @@ function fetchData (){
     return new Promise(resolve=>{
         setTimeout(()=>{
             resolve(users)
-        },100)
+        },2000)
     })
 }
 function fetchSettings (){
@@ -66,8 +66,8 @@ function render (){
                 }
             }
             else{
-                for(let i = 0 ; i < data.length ; i++){
-                    if(data[i].status){
+                for(let i = 0 ; i < settings.Max_items_to_show && i<data.length ; i++){
+                    
                         let info = document.createElement("div")
                         info.classList.add("info")
                         
@@ -83,7 +83,7 @@ function render (){
                         info.append(name,description)
                         Container.append(info);
                         
-                    }
+                    
                     
                 }
             }

@@ -32,41 +32,41 @@ class Card {
          and throw an error if the the condition is not met,
          you will also need to handle the error in the place where we use the Card constructor
           */
-        
-        if(this.nameIsValid(name)) {
+
+        if (this.nameIsValid(name)) {
             this.name = name;
         }
-            else{ throw new Error("invalid name/name field cannot be an empty")}
-        if(this.surnameIsValid(surname)){
+        else { throw new Error("invalid name/name field cannot be an empty") }
+        if (this.surnameIsValid(surname)) {
             this.surname = surname;
         }
-            else{ throw new Error("invalid surname/surname field cannot be an empty")}
-        if(this.pinIsValid(pinCode)){
+        else { throw new Error("invalid surname/surname field cannot be an empty") }
+        if (this.pinIsValid(pinCode)) {
             this.pinCode = pinCode;
         }
-        else{ throw new Error("pin code can consists only numbers")}
+        else { throw new Error("pin code can consists only numbers") }
 
     }
-    nameIsValid(name){
+    nameIsValid(name) {
         return name;
     }
-    surnameIsValid(surname){
+    surnameIsValid(surname) {
         return surname;
     }
-    pinIsValid(pinCode){
-       return pinCode.toString().split("").every(digit =>  0 <= +digit &&  +digit<= 9)
+    pinIsValid(pinCode) {
+        return pinCode.toString().split("").every(digit => 0 <= +digit && +digit <= 9)
     }
-    get number () {
+    get number() {
         return this.#cardNumber;
     }
-    get amount(){
+    get amount() {
         return this.#amount;
     }
-    addMoney(money){
+    addMoney(money) {
         this.#amount += money;
     }
-    withdrawMoney(money){
-        if(money <= this.#amount){
+    withdrawMoney(money) {
+        if (money <= this.#amount) {
             this.#amount -= money;
             return true;
         }
@@ -95,46 +95,46 @@ class CardService {
 
 
     static removeCard(cardNumber) {
-        this.cardsList = this.cardsList.filter(item=>!( item.number == cardNumber))
+        this.cardsList = this.cardsList.filter(item => !(item.number == cardNumber))
     }
 
     static async checkCardExistence(numbers) {
         // return true if the card exists
         // this will help you avoid duplicate card codes numbers
         let exists = false;
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             let card = {}
-            for(let i = 0; i < this.cardsList.length ; i++){
-                if( this.cardsList[i].number == numbers ) {
+            for (let i = 0; i < this.cardsList.length; i++) {
+                if (this.cardsList[i].number == numbers) {
                     card = this.cardsList[i]
                     exists = true;
                     break;
                 }
             }
-            if(exists) resolve(card);
+            if (exists) resolve(card);
             else reject("card doesn't exists")
         })
     }
 
     static async addMoney(cardNumber, moneyAmount) {
         await this.checkCardExistence(cardNumber)
-            .then(card=>{
+            .then(card => {
                 card.addMoney(moneyAmount);
                 return "money added successfully"
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
             })
-}
+    }
 
 
     static async removeMoney(cardNumber, amount) {
         await this.checkCardExistence(cardNumber)
-            .then(card=>{
+            .then(card => {
                 card.withdrawMoney(amount);
                 return "money removed successfully"
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
             })
 
@@ -146,16 +146,16 @@ class CardService {
         // the transactions need to be safe
 
         // calls removeMoney and addMoney methods accordingly
-        await Promise.all( [this.checkCardExistence(cardNumber),this.checkCardExistence(toCardNumber)] )
-            .then(cards=>{
-                let [card,toCard] = cards;
-                if(card.withdrawMoney(amount)){
+        await Promise.all([this.checkCardExistence(cardNumber), this.checkCardExistence(toCardNumber)])
+            .then(cards => {
+                let [card, toCard] = cards;
+                if (card.withdrawMoney(amount)) {
                     toCard.addMoney(amount)
                     return `${amount} AMD trasferd from ${cardNumber} to ${toCardNumber} successfully`
                 }
                 else throw new Error("not enough money")
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
             })
 
@@ -169,7 +169,7 @@ class CardService {
 
 
 
-/* //  ATM class is simple
+//  ATM class is simple
 // All methods are static
 
 class ATM {
@@ -178,13 +178,26 @@ class ATM {
 
     static refill() {
         // this method refills the amount of the money in the ATM
+        this.totalMoney = 500000;
     }
 
 
-    static async getMoney(card, amount) {
+    static async getMoney(cardNumber, amount) {
 
         // you will need to call Card service appropriate method in order to get the money
         // if there is not enough money in the ATM you will need to throw error
+        await CardService.checkCardExistence(cardNumber)
+            .then(card => {
+                if (money <= this.totalMoney) {
+                    CardService.removeMoney(cardNumber, amount)
+                    this.totalMoney -= amount;
+                }
+                else throw new Error("not enough money in ATM")
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
     }
 
@@ -192,32 +205,25 @@ class ATM {
 
 
 }
-
-
 
 // All methods are static
 
 
 class Terminal {
-    totalAmountOfMoney = 0;
+    static totalAmountOfMoney = 0;
 
     static async transferToCard(cardNumber, amount) {
         // need to also be validated
+        await CardService.checkCardExistence(cardNumber)
+            .then(card => {
+                card.addMoney(amount);
+                this.totalAmountOfMoney += amount;
+                return "money added to card"
+            })
+    }
+    static empty() {
+        this.totalAmountOfMoney = 0;
     }
 
 
 }
- */
-
-const card1 = new Card({
-    name: 'John',
-    surname: 'Smith',
-    pinCode: 12345
-});
-const card2 = new Card({
-    name: 'narek',
-    surname: 'Mar',
-    pinCode: 1302
-});
-
-c
